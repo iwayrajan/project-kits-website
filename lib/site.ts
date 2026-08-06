@@ -10,8 +10,7 @@ export const categories = [
 ];
 
 export const site = {
-  // TODO: replace with your real brand name
-  brandName: "YourBrand",
+  brandName: "FinalYearKit",
   // Deliberately category-agnostic — this brand covers project kits across
   // categories (AI/ML today, more later), not just AI specifically.
   tagline: "Project kits built to actually work \u2014 and documented so you can defend them.",

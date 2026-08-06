@@ -1,6 +1,7 @@
 "use client";
 
 import Link from "next/link";
+import Image from "next/image";
 import { useState } from "react";
 import { site } from "@/lib/site";
 
@@ -10,9 +11,9 @@ export default function Header() {
   return (
     <header className="sticky top-0 z-50 glass">
       <div className="mx-auto max-w-7xl px-5 sm:px-8 h-16 flex items-center justify-between">
-        <Link href="/" className="font-display font-semibold text-lg tracking-tight text-text flex items-center gap-2">
-          <span className="h-2 w-2 rounded-full bg-cyan animate-pulse-glow" />
-          {site.brandName}
+        <Link href="/" className="font-display font-bold text-lg tracking-tight text-text flex items-center gap-2.5">
+          <Image src="/logo-icon.svg" alt="" width={32} height={32} priority className="rounded-lg" />
+          Final<span className="text-gradient">Year</span>Kit
         </Link>
 
         <nav className="hidden md:flex items-center gap-8 text-sm font-medium text-text-muted">

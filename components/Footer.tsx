@@ -1,4 +1,5 @@
 import Link from "next/link";
+import Image from "next/image";
 import { site } from "@/lib/site";
 
 function SocialIcon({ href, label, path }: { href: string; label: string; path: string }) {
@@ -33,9 +34,9 @@ export default function Footer() {
       <div className="mx-auto max-w-7xl px-5 sm:px-8 py-16">
         <div className="grid md:grid-cols-[1.4fr_1fr_1fr_1fr_1fr] gap-10">
           <div>
-            <Link href="/" className="font-display font-semibold text-lg text-text flex items-center gap-2">
-              <span className="h-2 w-2 rounded-full bg-cyan" />
-              {site.brandName}
+            <Link href="/" className="font-display font-bold text-lg text-text flex items-center gap-2.5">
+              <Image src="/logo-icon.svg" alt="" width={28} height={28} className="rounded-md" />
+              Final<span className="text-gradient">Year</span>Kit
             </Link>
             <p className="text-sm text-text-muted mt-3 max-w-xs leading-relaxed">{site.tagline}</p>
             <div className="flex items-center gap-3 mt-5">
