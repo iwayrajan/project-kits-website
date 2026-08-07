@@ -59,7 +59,7 @@ export const site = {
   ],
 
   trustPoints: [
-    { stat: "4", label: "product kits shipped, each with a full working codebase" },
+    { stat: "Every", label: "kit ships with a full working codebase, report, deck & viva bank" },
     { stat: "10/10", label: "test cases passed on every project, documented in the report" },
     { stat: "100%", label: "customized to your name, college, and department" },
   ],
