@@ -2,6 +2,7 @@ import Link from "next/link";
 import { notFound } from "next/navigation";
 import ReactMarkdown from "react-markdown";
 import { blogPosts, getBlogPost } from "@/lib/blog";
+import { buildMetadata, articleJsonLd, breadcrumbJsonLd } from "@/lib/seo";
 import WhatsAppInlineCta from "@/components/WhatsAppInlineCta";
 
 export function generateStaticParams() {
@@ -12,7 +13,11 @@ export async function generateMetadata({ params }: { params: Promise<{ slug: str
   const { slug } = await params;
   const post = getBlogPost(slug);
   if (!post) return {};
-  return { title: `${post.title} — Blog`, description: post.excerpt };
+  return buildMetadata({
+    title: post.title,
+    description: post.excerpt,
+    path: `/blog/${post.slug}`,
+  });
 }
 
 export default async function BlogPostPage({
@@ -32,6 +37,22 @@ export default async function BlogPostPage({
 
   return (
     <article className="mx-auto max-w-3xl px-5 sm:px-8 py-16">
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(articleJsonLd(post)) }}
+      />
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{
+          __html: JSON.stringify(
+            breadcrumbJsonLd([
+              { name: "Home", path: "/" },
+              { name: "Blog", path: "/blog" },
+              { name: post.title, path: `/blog/${post.slug}` },
+            ])
+          ),
+        }}
+      />
       <Link href="/blog" className="text-sm text-text-muted hover:text-cyan transition-colors">
         &larr; All posts
       </Link>

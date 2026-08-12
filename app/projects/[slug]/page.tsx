@@ -2,6 +2,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { notFound } from "next/navigation";
 import { projects, getProject } from "@/lib/projects";
+import { buildMetadata, productJsonLd, faqJsonLd, breadcrumbJsonLd } from "@/lib/seo";
 import ChatMockup from "@/components/ChatMockup";
 import StampBadge from "@/components/StampBadge";
 import FaqAccordion from "@/components/FaqAccordion";
@@ -18,7 +19,11 @@ export async function generateMetadata({ params }: { params: Promise<{ slug: str
   const { slug } = await params;
   const project = getProject(slug);
   if (!project) return {};
-  return { title: `${project.title} — Project Kit`, description: project.tagline };
+  return buildMetadata({
+    title: `${project.title} \u2014 Final Year Project Kit with Source Code & Report`,
+    description: `${project.tagline} Includes full source code, an 8-chapter report, presentation deck, and viva question bank.`,
+    path: `/projects/${project.slug}`,
+  });
 }
 
 export default async function ProjectPage({
@@ -32,6 +37,26 @@ export default async function ProjectPage({
 
   return (
     <div>
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(productJsonLd(project)) }}
+      />
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(faqJsonLd(project.faq)) }}
+      />
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{
+          __html: JSON.stringify(
+            breadcrumbJsonLd([
+              { name: "Home", path: "/" },
+              { name: "Projects", path: "/#projects" },
+              { name: project.title, path: `/projects/${project.slug}` },
+            ])
+          ),
+        }}
+      />
       {/* Breadcrumb */}
       <div className="mx-auto max-w-6xl px-5 sm:px-8 pt-8">
         <Link href="/#projects" className="text-sm text-text-muted hover:text-cyan transition-colors">

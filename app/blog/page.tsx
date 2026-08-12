@@ -1,10 +1,12 @@
 import Link from "next/link";
 import { blogPosts } from "@/lib/blog";
+import { buildMetadata } from "@/lib/seo";
 
-export const metadata = {
-  title: "Blog — architecture explainers, viva prep, and project guides",
-  description: "Architecture explainers, viva prep guides, and project-picking advice.",
-};
+export const metadata = buildMetadata({
+  title: "Blog — Final Year Project Ideas, Viva Prep & Architecture Guides",
+  description: "Final year and mini project ideas, viva question prep, and architecture explainers for engineering students building AI/ML projects.",
+  path: "/blog",
+});
 
 export default function BlogIndexPage() {
   return (

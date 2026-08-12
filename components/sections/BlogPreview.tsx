@@ -30,7 +30,10 @@ export default function BlogPreview() {
         </FadeIn>
 
         <StaggerGroup className="grid sm:grid-cols-3 gap-5 mt-10">
-          {blogPosts.map((post) => (
+          {[...blogPosts]
+            .sort((a, b) => new Date(b.date).getTime() - new Date(a.date).getTime())
+            .slice(0, 3)
+            .map((post) => (
             <StaggerItem key={post.slug}>
               <Link href={`/blog/${post.slug}`} className="group block rounded-xl glass overflow-hidden hover:border-cyan/40 transition-colors">
                 <PostThumb category={post.category} />

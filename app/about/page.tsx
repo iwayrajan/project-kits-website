@@ -1,14 +1,17 @@
 import Link from "next/link";
 import { projects } from "@/lib/projects";
+import { buildMetadata } from "@/lib/seo";
 import StampBadge from "@/components/StampBadge";
 import WhatsAppInlineCta from "@/components/WhatsAppInlineCta";
 import FadeIn from "@/components/motion/FadeIn";
 import { StaggerGroup, StaggerItem } from "@/components/motion/Stagger";
 
-export const metadata = {
-  title: "About & Trust",
-  description: "Why you can trust a project kit you found on Instagram.",
-};
+export const metadata = buildMetadata({
+  title: "About & Trust — Why Buy Project Kits Here",
+  description:
+    "Working code, matching documentation, and real testing behind every final year and mini project kit — here's what makes each one trustworthy before you pay.",
+  path: "/about",
+});
 
 export default function AboutPage() {
   return (

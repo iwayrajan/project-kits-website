@@ -210,6 +210,72 @@ Here are three different architectures, each solving a different kind of problem
 
 The fastest way to pick wrong is to start from "I want to build an AI chatbot" and work backward. Start from the actual problem instead: is the answer sitting somewhere in existing content (RAG), does it need to be computed from structured data (text-to-code), or is it fundamentally a comparison that needs an explainable judgment (extract-score-generate)? The architecture should follow from that answer, not the other way around — and being able to explain *why* you picked the pattern you did is exactly the kind of question a viva panel is going to ask.`,
   },
+  {
+    slug: "ai-ml-final-year-project-ideas",
+    title: "15 AI/ML Final Year Project Ideas That Actually Demonstrate Skill",
+    excerpt:
+      "Beyond the generic 'chatbot' idea — 15 AI/ML final year and mini project ideas organized by what they actually teach you, with the tradeoffs an examiner will ask about.",
+    category: "Guides",
+    readTime: "10 min read",
+    date: "2026-03-05",
+    body: `Search "AI project ideas for final year" and you'll get the same five suggestions repeated across a dozen sites: sentiment analysis, spam detection, a recommendation system, a chatbot. Not because they're bad ideas — because they're safe, well-documented, and easy to write about. The problem is a panel has seen them a hundred times too.
+
+Below are 15 ideas organized by the pattern they teach, not by buzzword, with a note on what makes each one defensible versus what makes it forgettable. A quick note before the list: for **mini projects** (typically a single semester, smaller scope), pick from the "narrower scope" ideas below; for **final year / major projects**, the "broader scope" ones give you more to talk about across a full report and viva.
+
+## Retrieval-Augmented Generation (RAG) — question-answering grounded in specific content
+
+**1. Chat with a PDF or document set.** Upload a document, ask questions, get answers cited by page. The defensible version isn't "I used an LLM" — it's explaining chunking strategy, why you picked a specific embedding model, and how you handle a question with no answer in the source.
+
+**2. Chat with video/audio content.** Same pattern applied to a transcript instead of a document — the interesting technical wrinkle is handling content with no existing captions, which forces you to deal with speech-to-text as a fallback.
+
+**3. Chat with a knowledge base across multiple documents.** Harder than it sounds: retrieval across many sources needs to correctly attribute which source an answer came from, not just retrieve *a* relevant chunk.
+
+**4. A course/lecture Q&A assistant.** Same RAG core, applied to your own department's lecture notes — a genuinely useful tool you can demo to your own class, which is a strong viva narrative ("I built something people in my batch actually use").
+
+*What makes these defensible:* being able to explain chunking, embeddings, and why you chose hybrid (keyword + semantic) retrieval over pure vector search — most student RAG projects skip this and can't explain why their retrieval sometimes gets confused between similar-sounding facts.
+
+## Text-to-code / data analysis — computing answers, not retrieving them
+
+**5. Natural language to chart/query tool.** Upload a spreadsheet, ask a question in plain English, get a computed chart or number back. The technically interesting part is sandboxing generated code safely and handling a question that needs joining two tables.
+
+**6. An automated report generator from raw data.** Given a dataset, generate a written summary of trends, not just charts — forces you to think about what's actually worth saying about data, not just visualizing it.
+
+*What makes these defensible:* explaining why this isn't RAG (there's no passage to retrieve — the answer has to be computed), and having a real answer for what happens when generated code fails.
+
+## Classification and prediction — the classic ML pattern, done with real rigor
+
+**7. A disease risk prediction model** using a public medical dataset — defensible if you can talk through precision/recall tradeoffs and why accuracy alone is a misleading metric for imbalanced medical data.
+
+**8. Fake news / misinformation detection.** A genuinely popular, genuinely useful topic — but a panel will ask about your training data's bias and how the model handles topics it wasn't trained on. Have a real answer ready.
+
+**9. Crop yield or disease prediction from image data.** A strong pick for students with an agricultural or rural context to draw on — practical, explainable, and distinct from the usual dataset choices.
+
+*What makes these defensible:* a real train/test/validation split, a confusion matrix you can explain, and at least one honest limitation you found during testing.
+
+## Extract-score-generate — comparison and explainable judgment
+
+**10. A resume-to-job-description match scorer.** Interesting specifically because a single opaque "match score" is a bad answer — the strong version breaks the score into named components (skills, experience, education) so it's explainable, not just a black box.
+
+**11. A plagiarism or code-similarity checker.** Same pattern: don't just output "80% similar," show *which* sections matched and why.
+
+*What makes these defensible:* explaining explicitly why you didn't just ask an LLM for a single score directly — auditability is the actual design decision here, not accuracy alone.
+
+## Computer vision — a different modality, same rigor expectations
+
+**12. Real-time object detection for a specific use case** (attendance via face detection, defect detection on a production line, PPE compliance checking) — narrower and more defensible than generic "object detection," since a specific use case forces real constraints.
+
+**13. Image-based accessibility tool** (describing images for visually impaired users, sign language recognition) — genuinely useful, and the accessibility framing gives you a strong "why this matters" answer for free.
+
+## Multi-modal and agentic — higher difficulty, higher ceiling
+
+**14. A voice-based assistant over your own RAG system.** Adds speech-to-text and text-to-speech around a retrieval core — a good pick if you want to demonstrate breadth without starting from zero, since the retrieval logic reuses everything from ideas #1-4.
+
+**15. A multi-step agent that uses tools.** A model that decides which of several tools to call (search, calculator, database lookup) to answer a question — the most ambitious idea on this list, and worth attempting only if you have real time to test it, since agentic systems fail in more subtle, harder-to-debug ways than a single-step pipeline.
+
+## How to actually pick one
+
+Don't start from "what sounds impressive." Start from: can I explain this end to end without notes, can I realistically finish and test it well before the deadline, and can I name its limitations myself before a panel finds them. A well-executed, honestly-scoped idea from this list beats an ambitious one you can't fully defend — that's true whether you're building it yourself or starting from a working kit and making it genuinely your own from there.`,
+  },
 ];
 
 export function getBlogPost(slug: string) {

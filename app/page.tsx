@@ -1,4 +1,6 @@
 import { projects } from "@/lib/projects";
+import { HOME_FAQ } from "@/lib/faq";
+import { faqJsonLd } from "@/lib/seo";
 import Hero from "@/components/sections/Hero";
 import TrustBar from "@/components/sections/TrustBar";
 import FeaturedProjects from "@/components/sections/FeaturedProjects";
@@ -16,6 +18,10 @@ export default function Home() {
 
   return (
     <div>
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(faqJsonLd(HOME_FAQ)) }}
+      />
       <Hero heroProject={heroProject} />
       <TrustBar />
       <FeaturedProjects projects={projects} />

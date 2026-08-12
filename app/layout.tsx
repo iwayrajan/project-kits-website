@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { Inter, IBM_Plex_Mono, Space_Grotesk } from "next/font/google";
 import "./globals.css";
 import { site } from "@/lib/site";
+import { organizationJsonLd, websiteJsonLd } from "@/lib/seo";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import WhatsAppButton from "@/components/WhatsAppButton";
@@ -24,8 +25,32 @@ const spaceGrotesk = Space_Grotesk({
 });
 
 export const metadata: Metadata = {
-  title: `${site.brandName} \u2014 Project Kits That Actually Work`,
-  description: site.description,
+  metadataBase: new URL(site.siteUrl),
+  title: {
+    default: `${site.brandName} \u2014 ${site.seoTitle}`,
+    template: `%s | ${site.brandName}`,
+  },
+  description: site.seoDescription,
+  openGraph: {
+    title: `${site.brandName} \u2014 ${site.seoTitle}`,
+    description: site.seoDescription,
+    url: site.siteUrl,
+    siteName: site.brandName,
+    locale: "en_IN",
+    type: "website",
+    images: [{ url: `${site.siteUrl}/og-image.png`, width: 1200, height: 630 }],
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: `${site.brandName} \u2014 ${site.seoTitle}`,
+    description: site.seoDescription,
+    images: [`${site.siteUrl}/og-image.png`],
+  },
+  robots: {
+    index: true,
+    follow: true,
+    googleBot: { index: true, follow: true },
+  },
 };
 
 export default function RootLayout({
@@ -39,6 +64,14 @@ export default function RootLayout({
       className={`${inter.variable} ${plexMono.variable} ${spaceGrotesk.variable} h-full antialiased dark`}
     >
       <body className="min-h-full flex flex-col bg-void">
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(organizationJsonLd()) }}
+        />
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(websiteJsonLd()) }}
+        />
         <Header />
         <main className="flex-1">{children}</main>
         <Footer />

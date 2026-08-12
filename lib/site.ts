@@ -17,6 +17,18 @@ export const site = {
   description:
     "Working, documented, viva-ready project kits across AI/ML today, with more categories on the way.",
 
+  // TODO: replace with your real deployed URL once you have a domain (or your
+  // vercel.app URL if you haven't bought a domain yet) — this drives the
+  // sitemap, canonical URLs, and Open Graph tags. Wrong value here silently
+  // breaks social share previews and sitemap correctness.
+  siteUrl: "https://finalyearkit.vercel.app",
+
+  // SEO-specific title/description, tuned to match actual search phrases
+  // students use (see lib/seo.ts for how these are applied per-page).
+  seoTitle: "Final Year & Mini Project Kits with Source Code, Report, PPT & Viva Prep",
+  seoDescription:
+    "Ready-made final year and mini project kits for engineering students \u2014 working source code, an 8-chapter report, presentation deck, and viva question bank. AI/ML project kits available now, delivered on WhatsApp.",
+
   // TODO: replace with your real WhatsApp number, digits only, with country code
   whatsappNumber: "911234567890",
   whatsappDefaultMessage: "Hi! I'm interested in one of your project kits.",
